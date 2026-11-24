@@ -4,7 +4,7 @@ checkride-profile: 1
 # checkride project profile
 
 > Copy this file to `.claude/checkride.md` in your repo and edit it. Every section is optional: a missing section means "not used in this project" and the step that reads it is skipped with one line in the report.
-> When no profile exists at all, the skills use the defaults written below as-is.
+> When no profile exists at all, the skills use the defaults written below as-is. Lines in `<angle brackets>` are placeholders: they are ignored until you replace them with real values.
 > Skills and agents never contain repo paths of their own — everything project-specific lives here.
 
 ## Project

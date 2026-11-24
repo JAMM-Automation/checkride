@@ -1,6 +1,6 @@
 {
   "name": "checkride",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plan, challenge, act, verify: a task workflow for Claude Code where nothing is called done without an independent check. Skills: plan, grill, save. Agents: architect, skeptic, validator, creative-director.",
   "author": {
     "name": "JAMM Automation",

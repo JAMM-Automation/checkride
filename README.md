@@ -32,7 +32,7 @@ Agents are fast and confident. The failures that cost the most are not syntax er
 | `checkride:skeptic` | agent | The "tenth man". Gets the finished plan without the author's reasoning and challenges it through three lenses: simpler? fragile assumptions? existing reuse? Returns STOP / CONCERNS / PASS. |
 | `checkride:architect` | agent | Plans large changes when there is a real design fork: alternatives, target state, risks, migration order, criteria. Read-only; returns the task file text. |
 | `checkride:validator` | agent | Checks the live system before a large task is closed. Read-only, never sees the executor's report, and also hunts for what could have been missed: lost requirements, consequences of mid-task changes, references to cancelled things, forgotten traces. |
-| `checkride:creative-director` | agent | Improves the delivery of a finished draft (hook, one benefit, one action, rhythm) without touching facts, links or placeholders. Scores its own output and rewrites anything below 7/10. |
+| `checkride:creative-director` | agent | Optional, for projects that publish user-facing text. Improves the delivery of a finished draft (hook, one benefit, one action, rhythm) without touching facts, links or placeholders. Scores its own output and rewrites anything below 7/10. |
 | `templates/CLAUDE.md` | template | The Plan → Act → Verify rules to paste into your project's `CLAUDE.md`. |
 | `templates/checkride.md` | template | The project profile: where your trackers, plans, lessons and registries live, what "production" means, how to commit. |
 

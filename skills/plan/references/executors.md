@@ -48,7 +48,7 @@ Give a mechanical executor **a ready list in the brief** (files, a replacement t
 2. **Spec and report** — the goal, hard constraints, the stage's check command; a report in numbers (counters, check output, artifact path), not a list of files. If the stage depends on a precondition, put the precondition and its check command in the brief: the executor runs it first; a mismatch → stop and report.
 3. **Discipline** — write nothing outside its stage's files (in particular `CLAUDE.md`, auto-loaded rules, production) · absolute paths, no `cd` in compound commands · for a subagent: do not spawn your own subagents, do not use background runs · the brief is self-contained: if the executor dies, re-run the same brief unchanged.
 
-**Long runs (ETA over 30–40 minutes)** — in the brief: first check with `pgrep -f` that the process is not already running; launch it as a separate process (`nohup … & disown`) that survives turn boundaries and the agent's death, and return `launched` + PID + log path. Set up a background watcher that also catches crashes: the process is dead without a completion marker → report + log tail.
+**Long runs (ETA over 30–40 minutes)** — in the brief (commands below assume a Unix shell; adapt them on Windows): first check with `pgrep -f` that the process is not already running; launch it as a separate process (`nohup … & disown`) that survives turn boundaries and the agent's death, and return `launched` + PID + log path. Set up a background watcher that also catches crashes: the process is dead without a completion marker → report + log tail.
 
 ## 4. The graph and real parallelism
 

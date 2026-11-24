@@ -2,7 +2,7 @@
 name: grill
 description: A hard, structured interrogation of a new task before any action — a decision tree, questions in rounds, until no branch is left silently assumed. Ends with "Shared understanding + Done criteria". Run it only after the user explicitly agrees to an offer to grill the task, or on their direct request. Domain branches come from the project profile.
 argument-hint: [short task description]
-disallowed-tools: AskUserQuestion, Task
+disallowed-tools: AskUserQuestion, Task, Agent
 allowed-tools: Read, Glob, Grep
 effort: high
 ---
@@ -50,7 +50,7 @@ Questions go **as text in the chat**. `AskUserQuestion` is disabled here (see `d
 
 **Finding facts is your job, never theirs.** If a question lacks a fact from the environment (what is in the database, what the config says now, whether this workflow exists, what the source of truth says) — go and read it with Read/Glob/Grep. Ask only for **decisions**, never for data you can get.
 
-Subagent fan-out is disabled here (`disallowed-tools: Task`) to protect the token budget. If a fact really needs heavy research: ask the rest of the frontier now, and ask permission for a research agent for that one branch separately.
+Subagent fan-out is disabled here (`disallowed-tools: Task, Agent` — the subagent tool has had both names) to protect the token budget. If a fact really needs heavy research: ask the rest of the frontier now, and ask permission for a research agent for that one branch separately.
 
 ## What must be covered
 

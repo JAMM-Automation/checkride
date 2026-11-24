@@ -12,7 +12,7 @@ One pass, **no question about the mode**: session note + trackers + lessons into
 
 ## 0. Profile and mode
 
-1. `ROOT=$(git rev-parse --show-toplevel)`; read `$ROOT/.claude/checkride.md`. Missing → use the defaults in `${CLAUDE_PLUGIN_ROOT}/templates/checkride.md` and say in the first line of the report: "no project profile — defaults used; copy the template to `.claude/checkride.md`".
+1. `ROOT=$(git rev-parse --show-toplevel)`; read `$ROOT/.claude/checkride.md`. Missing → use the defaults in `${CLAUDE_PLUGIN_ROOT}/templates/checkride.md` and say in the first line of the report: "no project profile — defaults used; copy the template to `.claude/checkride.md`". Lines in `<…>` in the template are placeholders and are ignored.
 2. Every path below in `‹…›` comes from the profile: ‹trackers› (`## Trackers`, may be several files or a glob), ‹backlog›, ‹task archive›, ‹plans›, ‹sessions›, ‹memory index›, ‹lessons› (`## Lessons`), commit mode and hygiene (`## Saving`). A path the profile does not define → that step is skipped with one line in the report; never invent a location.
 3. **`--dry` in the arguments** → run steps 1–2d (read-only), then report "what would be written" (including the "Repetition" section): the new note's path, which tracker lines would close or be rewritten, where the lessons would go, what would be committed, which hygiene/drift checks would run. Write nothing, commit nothing. Every path in the report is absolute or relative to `$ROOT`.
 
@@ -112,10 +112,10 @@ Goal: work that repeats becomes a skill after the second time, not the tenth.
 
 - **Session note** → `Write` `‹sessions›/YYYY-MM-DD_HH-MM_<slug>.md` (format ↓)
 - **Lesson** → into its domain file per ‹lessons›
-- **‹task archive› / ‹backlog›** → `cat >>` **after** `<!-- auto-append below -->` if the marker exists (not `Edit`: it pulls a read of the whole file)
+- **‹task archive› / ‹backlog›** → `cat >>` **after** `<!-- auto-append below -->` if the marker exists (not `Edit`: it pulls a read of the whole file). The file does not exist yet → create it with a one-line title and the marker, then append; the same for ‹trackers› (`TODO.md` with the sections Top / In progress / Blockers)
 - **‹memory index›** → only for a new or changed topic file
 - **‹trackers›** → `Edit`: add / remove closed / **rewrite** live lines ≤250
-- **Plan and note archives** → `mv` per the case table
+- **Plan and note archives** → `mkdir -p` the archive folder, then `mv` per the case table
 - **Rules / registries / secret descriptions** → spot `Edit`s, only what was flagged (for secrets — the key name and description, never the value)
 
 ## 4. Commit (automatic)

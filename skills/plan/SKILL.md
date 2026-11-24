@@ -10,7 +10,7 @@ One entry point, five steps, one task file. The steps are the same for every tas
 
 > **The skill is the rails; the task file is the state.** Instructions fade after a few hundred tool calls; the task file is re-read before every stage. Rely on the file, not on your memory of this text.
 
-**Project profile.** First step: read `.claude/checkride.md` at the repo root (`git rev-parse --show-toplevel`). No profile → work with the defaults in `${CLAUDE_PLUGIN_ROOT}/templates/checkride.md` and say so in the first line of your reply ("no project profile — using defaults; copy the template to `.claude/checkride.md` to customise"). Paths below in `‹angle brackets›` come from the profile or those defaults.
+**Project profile.** First step: read `.claude/checkride.md` at the repo root (`git rev-parse --show-toplevel`). No profile → work with the defaults in `${CLAUDE_PLUGIN_ROOT}/templates/checkride.md` and say so in the first line of your reply ("no project profile — using defaults; copy the template to `.claude/checkride.md` to customise"). Paths below in `‹angle brackets›` come from the profile or those defaults; lines in `<…>` in the template are placeholders and are ignored.
 
 ## Size — decide first
 
@@ -54,7 +54,7 @@ The task file `‹plans›/<slug>.md`, from `references/task-template.md`: goal 
 - **Criteria and stage checks** follow `references/checks.md`: a fact a command can refute, with the expected output written before the run.
 - **Executors** are a column in the stages table, per `references/executors.md`: small work inline; an agent only where a cheaper model does the same job or it isolates heavy reading.
 - **Alternatives** only when there is a real fork: the chosen one goes into the stages, the rejected one with its reason into "Changes and cuts". No fork → write nothing.
-- **Architect** (large, under the condition in the size table): run `checkride:architect` with the task description, the user's answers, the recon facts and the profile path. It is read-only and returns the task-file text; I write it verbatim.
+- **Architect** (large, under the condition in the size table): run `checkride:architect` with the task description, the user's answers, the recon facts, the profile path and the absolute paths of `${CLAUDE_PLUGIN_ROOT}/skills/plan/references/task-template.md` and `${CLAUDE_PLUGIN_ROOT}/skills/plan/references/checks.md`. It is read-only and returns the task-file text; I write it verbatim.
 - **Skeptic** (large): run `checkride:skeptic` with the path to the task file and **without my chain of reasoning**. CONCERNS → apply the fixes. STOP → correct or justify; at most one more round. Medium: I run the three lenses myself — simpler? fragile assumptions? reuse of what exists?
 
 ## 3. Approval 🔴 point of no return
@@ -93,7 +93,7 @@ For every stage:
    ```
    Anything open → back to step 4.
 2. **Validator** (large, production changed or something irreversible): run `checkride:validator` with the criteria, the task-file path and the profile — **without my execution report**. FAIL → step 4 and validate again. NOT-VERIFIABLE → to the user for a manual check. Every "what could be missed" finding is either worked through or dismissed with a line in the task file. Large without production → no validator, but I go through its four "what could be missed" classes myself (lost requirements, consequences of additions, references to cancelled things, forgotten traces), one command each, result as a line in the task file.
-3. **No monitoring for days.** The deadline is the first real run of what changed; the check happens once. Whatever cannot be seen before close → one line in ‹backlog› with a trigger, and the task closes.
+3. **No multi-day monitoring by default.** The deadline is the first real run of what changed; the check happens once. Whatever cannot be seen before close → one line in ‹backlog› with a trigger, and the task closes.
 4. **Close.** "Open" is empty or moved to the backlog → commit your files per `## Saving` in the profile. Large: "N of N criteria confirmed. Close?" and wait for "yes". Then `/checkride:save` — after the "yes" for large tasks, or at the end of the session for medium ones; it collects the lessons; it is not run while a FAIL is open. The task file stays in ‹plans› as the source of truth; to resume, read the file and continue from the first row that is not ✅.
 
 ## Anti-patterns
