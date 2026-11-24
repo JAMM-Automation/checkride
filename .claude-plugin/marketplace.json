@@ -1,0 +1,17 @@
+{
+  "name": "jamm-automation",
+  "owner": {
+    "name": "JAMM Automation",
+    "url": "https://github.com/JAMM-Automation"
+  },
+  "metadata": {
+    "description": "Open tools for working with AI agents in production."
+  },
+  "plugins": [
+    {
+      "name": "checkride",
+      "source": "./",
+      "description": "Plan, challenge, act, verify: a task workflow for Claude Code where nothing is called done without an independent check."
+    }
+  ]
+}

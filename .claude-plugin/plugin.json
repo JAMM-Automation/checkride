@@ -1,0 +1,13 @@
+{
+  "name": "checkride",
+  "version": "0.1.0",
+  "description": "Plan, challenge, act, verify: a task workflow for Claude Code where nothing is called done without an independent check. Skills: plan, grill, save. Agents: architect, skeptic, validator, creative-director.",
+  "author": {
+    "name": "JAMM Automation",
+    "url": "https://github.com/JAMM-Automation"
+  },
+  "homepage": "https://github.com/JAMM-Automation/checkride",
+  "repository": "https://github.com/JAMM-Automation/checkride",
+  "license": "MIT",
+  "keywords": ["workflow", "planning", "verification", "code-review", "agents", "definition-of-done"]
+}
